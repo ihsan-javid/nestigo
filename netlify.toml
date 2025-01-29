@@ -5,3 +5,16 @@
 [build.environment]
   NODE_VERSION = "18.20.6"
   NODE_ENV = "production"
+  PORT = "8080"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[dev]
+  framework = "#custom"
+  command = "npm run dev"
+  targetPort = 8080
+  port = 8888
+  publish = "dist"

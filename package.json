@@ -1,7 +1,7 @@
 {
-  "scripts": {
+ "scripts": {
     "start": "node app.js",
-    "build": "IF not exist dist mkdir dist && xcopy /E /I public dist && node app.js",
+    "build": "mkdir -p dist && cp -r public/* dist/",
     "dev": "nodemon app.js"
   },
   "engines": {

@@ -1,7 +1,7 @@
 {
  "scripts": {
     "start": "node app.js",
-    "build": "mkdir -p dist && cp -r public/* dist/",
+    "build": "mkdir dist && cp -r public/* dist/",
     "dev": "nodemon app.js"
   },
   "engines": {
@@ -23,13 +23,13 @@
     "dotenv": "^16.4.7",
     "ejs": "^3.1.10",
     "ejs-mate": "^4.0.0",
-    "express": "^4.21.2",
+    "express": "^4.17.1",
     "express-session": "^1.18.1",
     "flash": "^1.1.0",
     "joi": "^17.13.3",
     "maplibre-gl": "^5.0.1",
     "method-override": "^3.0.0",
-    "mongoose": "^8.9.5",
+    "mongoose": "^7.6.3",
     "multer": "^1.4.5-lts.1",
     "passport": "^0.7.0",
     "passport-local": "^1.0.0",

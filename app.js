@@ -107,5 +107,5 @@ app.use((err, req, res, next) => {
   res.status(statusCode).render("listings/error.ejs", { message });
 });
 app.listen(port, () => {
-  console.log(`listening on port ${port}`);
+  console.log(`Server is running on port ${port}`);
 });

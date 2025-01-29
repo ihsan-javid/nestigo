@@ -32,10 +32,9 @@ const dbUrl = process.env.ATLASDB_URL || "mongodb://localhost:27017/wanderlust";
 
 async function main() {
   mongoose.connect(dbUrl, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    ssl: true,
-    tlsAllowInvalidCertificates: true,
+    retryWrites: true,
+    w: "majority",
+    tls: true,
   });
 }
 

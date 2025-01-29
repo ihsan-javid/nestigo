@@ -28,10 +28,15 @@ app.use(methodOverride("_method"));
 app.engine("ejs", ejsMate);
 app.use(express.static(path.join(__dirname, "/public")));
 
-const dburl = process.env.ATLASDB_URL;
+const dbUrl = process.env.ATLASDB_URL || "mongodb://localhost:27017/wanderlust";
 
 async function main() {
-  mongoose.connect(dburl);
+  mongoose.connect(dbUrl, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    ssl: true,
+    tlsAllowInvalidCertificates: true,
+  });
 }
 
 main()
@@ -43,7 +48,7 @@ main()
   });
 
 const store = MongoStore.create({
-  mongoUrl: dburl,
+  mongoUrl: dbUrl,
   crypto: {
     secret: process.env.SECRET,
   },

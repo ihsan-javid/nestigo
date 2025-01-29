@@ -1,0 +1,254 @@
+<script>
+  const allTitles = <%- JSON.stringify(allTitles) %>
+  const allListings = <%- JSON.stringify(allListings) %>
+</script>
+
+<style>
+  .filters {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none !important;
+    min-width: 100%;
+  }
+  .slider-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* width: 70%; */
+    overflow: hidden;
+    position: relative;
+  }
+  .slider {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    width: 85%;
+  }
+  .filter-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0.7;
+    justify-content: center;
+    cursor: pointer !important;
+    text-align: center;
+  }
+  .filter-item:hover {
+    background-color: #f7f7f7;
+
+    opacity: 1;
+  }
+  .filter-item p {
+    font-size: 0.8rem;
+    margin: 0;
+  }
+  .slider::-webkit-scrollbar {
+    display: none; /* Hide scrollbar for smooth scrolling */
+  }
+  .slider-arrow {
+    background-color: #d9d9d9;
+    color: black;
+    border: none;
+    padding: 0.5rem 0.75rem;
+    border-radius: 50%;
+    cursor: pointer;
+    position: absolute;
+    transform: none;
+    z-index: 2;
+  }
+
+  .left-arrow {
+    left: -1px;
+  }
+
+  .right-arrow {
+    right: 0;
+  }
+  .tax-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(0, 0, 0, 0.205);
+    border-radius: 1rem;
+    white-space: nowrap;
+    padding: 1rem;
+    margin-top: -0.5rem;
+    margin-left: 1rem;
+    height: 3.25rem;
+  }
+  .tax-info {
+    display: none;
+  }
+</style>
+
+<% layout("/layouts/boilerplate")%> <% if (!allListings || !allTitles) { %>
+<p>No data available</p>
+<% } %>
+
+<div class="filters">
+  <div class="slider-container" class="gap-4 mt-3">
+    <div class="slider" id="slider">
+      <button class="slider-arrow left-arrow">
+        <i class="fa-solid fa-left-long"></i>
+      </button>
+      <div class="filter-item" data-category="trending">
+        <div><i class="fa-solid fa-fire"></i></div>
+        <p>Trending</p>
+      </div>
+      <div class="filter-item" data-category="rooms">
+        <div><i class="fa-solid fa-bed"></i></div>
+        <p>Rooms</p>
+      </div>
+      <div class="filter-item" data-category="iconic cities">
+        <div><i class="fa-solid fa-mountain-city"></i></div>
+        <p>Iconic cities</p>
+      </div>
+      <div class="filter-item" data-category="mountains">
+        <div><i class="fa-solid fa-mountain"></i></div>
+        <p>Mountains</p>
+      </div>
+      <div class="filter-item" data-category="castles">
+        <div><i class="fa-brands fa-fort-awesome"></i></div>
+        <p>Castles</p>
+      </div>
+      <div class="filter-item" data-category="arctic">
+        <div><i class="fa-solid fa-snowflake"></i></div>
+        <p>Arctic</p>
+      </div>
+      <div class="filter-item" data-category="camping">
+        <div><i class="fa-solid fa-campground"></i></div>
+        <p>Camping</p>
+      </div>
+      <div class="filter-item" data-category="farms">
+        <div><i class="fa-solid fa-cow"></i></div>
+        <p>Farms</p>
+      </div>
+      <div class="filter-item" data-category="boats">
+        <div><i class="fa-solid fa-ship"></i></div>
+        <p>Boats</p>
+      </div>
+      <div class="filter-item" data-category="domes">
+        <div><i class="fa-solid fa-igloo"></i></div>
+        <p>Domes</p>
+      </div>
+      <div class="filter-item" data-category="beaches">
+        <div><i class="fa-solid fa-umbrella-beach"></i></div>
+        <p>Beaches</p>
+      </div>
+      <div class="filter-item" data-category="deserts">
+        <div><i class="fa-solid fa-sun"></i></div>
+        <p>Deserts</p>
+      </div>
+      <div class="filter-item" data-category="forests">
+        <div><i class="fa-solid fa-tree"></i></div>
+        <p>Forests</p>
+      </div>
+      <div class="filter-item" data-category="lakes">
+        <div><i class="fa-solid fa-water"></i></div>
+        <p>Lakes</p>
+      </div>
+      <div class="filter-item" data-category="caves">
+        <div><i class="fa-solid fa-mountain"></i></div>
+        <p>Caves</p>
+      </div>
+      <div class="filter-item" data-category="villas">
+        <div><i class="fa-solid fa-house"></i></div>
+        <p>Villas</p>
+      </div>
+      <div class="filter-item" data-category="treehouses">
+        <div><i class="fa-solid fa-tree"></i></div>
+        <p>Treehouses</p>
+      </div>
+      <div class="filter-item" data-category="luxury stays">
+        <div><i class="fa-solid fa-gem"></i></div>
+        <p>Luxury Stays</p>
+      </div>
+      <div class="filter-item" data-category="tiny homes">
+        <div><i class="fa-solid fa-home"></i></div>
+        <p>Tiny Homes</p>
+      </div>
+      <div class="filter-item" data-category="farm stays">
+        <div><i class="fa-solid fa-tractor"></i></div>
+        <p>Farm Stays</p>
+      </div>
+      <div class="filter-item" data-category="hiking spots">
+        <div><i class="fa-solid fa-hiking"></i></div>
+        <p>Hiking Spots</p>
+      </div>
+      <div class="filter-item" data-category="glamping">
+        <div><i class="fa-solid fa-tent"></i></div>
+        <p>Glamping</p>
+      </div>
+      <div class="filter-item" data-category="eco retreats">
+        <div><i class="fa-solid fa-seedling"></i></div>
+        <p>Eco Retreats</p>
+      </div>
+      <button class="slider-arrow right-arrow">
+        <i class="fa-solid fa-right-long"></i>
+      </button>
+    </div>
+  </div>
+  <div class="tax-toggle">
+    <div class="form-check-reverse form-switch">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        role="switch"
+        id="flexSwitchCheckDefault"
+      />
+      <label class="form-check-label" for="flexSwitchCheckDefault"
+        >Display totle before taxes</label
+      >
+    </div>
+  </div>
+</div>
+
+<div
+  id="listings"
+  class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-3 row-cols-1 mt-3 justify-content-center justify-content-sm-evenly"
+>
+  <% if (allListings && allListings.length > 0) { %> <%
+  allListings.forEach(listing => { %>
+  <a
+    href="/listings/<%=listing._id%>"
+    class="card index-card px-1 text-decoration-none"
+    style="width: 17rem"
+  >
+    <div>
+      <img
+        src="<%=listing.image.url %>"
+        class="card-img-top"
+        id="index-img"
+        alt="listing_image"
+        style="height: 12rem"
+      />
+
+      <div class="card-body px-1">
+        <p class="card-text">
+          <b><%=listing.title%></b> <br />
+          &#8377;<%=listing.price%> /night
+          <i class="tax-info">&nbsp; &nbsp;+18 GST</i>
+        </p>
+      </div>
+    </div>
+  </a>
+  <% }) %> <% } else { %>
+  <p>No listings found for this category</p>
+  <% } %>
+</div>
+
+<script>
+  document.querySelectorAll(".filter-item").forEach((item) => {
+    item.addEventListener("click", () => {
+      const category = item.getAttribute("data-category");
+      window.location.href = `/listings?category=${encodeURIComponent(
+        category
+      )}`;
+    });
+  });
+</script>

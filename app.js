@@ -28,14 +28,24 @@ app.use(methodOverride("_method"));
 app.engine("ejs", ejsMate);
 app.use(express.static(path.join(__dirname, "/public")));
 
-const dbUrl = process.env.ATLASDB_URL ;
+const dbUrl = process.env.ATLASDB_URL;
 
 async function main() {
-  mongoose.connect(dbUrl, {
-    retryWrites: true,
-    w: "majority",
-    tls: true,
-  });
+  try {
+    await mongoose.connect(dbUrl, {
+      tls: true,
+      tlsAllowInvalidCertificates: true,
+      serverApi: {
+        version: "1",
+        strict: true,
+        deprecationErrors: true,
+      },
+    });
+    console.log("MongoDB connected");
+  } catch (err) {
+    console.error("MongoDB connection error:", err);
+    process.exit(1);
+  }
 }
 
 main()

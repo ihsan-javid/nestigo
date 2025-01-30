@@ -2,7 +2,7 @@ if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
 }
 
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 3000;
 
 const express = require("express");
 const app = express();
@@ -15,7 +15,7 @@ const MongoStore = require("connect-mongo");
 const flash = require("connect-flash");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
-const User = require("./models/user.js");
+const User = require("./model/user.js");
 
 const reviewRoute = require("./routes/reviews.js");
 const listingRoute = require("./routes/listings.js");

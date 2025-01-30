@@ -126,12 +126,14 @@
           <h5 class="card-title mb-1">@<%= review.author.username %></h5>
           <p class="starability-result" data-rating="<%= review.rating %>"></p>
           <p class="card-text mb-1"><%= review.comment %></p>
+          <% if(currentUser && currentUser.equals(listing.owner._id)) { %>
           <form
             method="POST"
             action="/listings/<%=listing._id%>/reviews/<%=review._id%>?_method=DELETE"
           >
             <button class="btn btn-outline-danger mb-1">Delete Review</button>
           </form>
+          <%}%>
         </div>
       </div>
       <%}%>
@@ -140,6 +142,6 @@
   </div>
   <div class="small-size-container col-7 offset-3 mb-5">
     <h3>Where you'll be</h3>
-    <div id="map" style="width: 100%; height: 300px" class=" rounded-3"></div>
+    <div id="map" style="width: 100%; height: 300px" class="rounded-3"></div>
   </div>
 </div>

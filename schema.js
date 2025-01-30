@@ -34,8 +34,7 @@ module.exports.listingSchema = Joi.object({
         "hiking spots",
         "glamping",
         "eco retreats"
-      )
-      .required(),
+      ),
   }).required(),
 });
 

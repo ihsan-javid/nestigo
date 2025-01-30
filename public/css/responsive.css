@@ -193,7 +193,7 @@
   }
 
   #listings {
-    justify-content: space-evenly !important;
+    /* justify-content: space-evenly !important; */
   }
   #listings a {
     width: 16.5rem !important;

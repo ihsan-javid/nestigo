@@ -16,10 +16,12 @@ const flash = require("connect-flash");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const User = require("./model/user.js");
+const ExpressError = require("./utils/ExpressError.js");
 
 const reviewRoute = require("./routes/reviews.js");
 const listingRoute = require("./routes/listings.js");
 const userRoute = require("./routes/user.js");
+// const privacy = require("./routes/privacy.js");
 
 app.set("veiws engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -95,14 +97,23 @@ app.use((req, res, next) => {
   next();
 });
 
+app.get("/privacy", (req, res) => {
+  res.render("listings/privacy.ejs");
+});
+// Add this route with your other routes
+app.get("/terms", (req, res) => {
+    res.render("listings/terms.ejs");
+});
+app.get("/", (req, res) => {
+  res.redirect("/listings");
+});
+
+// app.use("/privacy", privacy);
 app.use("/listings", listingRoute);
 app.use("/listings/:id/reviews", reviewRoute);
 app.use("/", userRoute);
 
 
-app.get("/", (req, res) => {
-  res.redirect("/listings");
-});
 app.all("*", (req, res, next) => {
   next(new ExpressError(404, "page not found!"));
 });
@@ -113,3 +124,5 @@ app.use((err, req, res, next) => {
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
+
+module.exports = app;
